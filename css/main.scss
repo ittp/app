@@ -1,0 +1,21 @@
+.logo {
+  background-image: url("static/images/logo.svg")
+}
+
+#desktop
+{
+  display: flex;
+  flex-direction: column;
+  background: #eee;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  .logo {
+  
+  }
+  .navigation {
+  
+  }
+}
