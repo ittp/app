@@ -37,6 +37,8 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
+      - name: r
+        run: export ALPINE_MIRROR="https://mirror.yandex.ru/mirrors/alpine/edge/x86_64/main" >> ~/mirror.conf
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
