@@ -1,0 +1,97 @@
+<html>
+<head>
+</head>
+<body>
+
+
+<div x-ref="demo" class="flex w-full md:w-1/2 items-start p-4 md:p-10 justify-center bg-gray-300 md:h-full overflow-y-scroll">
+          
+<div x-data="loaded" x-init="$watch('library', (value) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lib', value);
+    history.pushState(null, document.title, url.toString());
+  })" class="flex flex-col md:w-2/3 mx-auto">
+  <p class="mb-2">location.search: "<span x-text="location.search">?lib=react</span>"</p>
+  <p class="mb-2">
+    Param "library" (initialised from "lib" URL query param): "<span x-text="library">react</span>"
+  </p>
+  <div class="mb-2">
+    <select name="lib" x-model="library" class="inline-block w-full appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+      <template x-for="lib in libraries" :key="lib.id">
+        <option :value="lib.id" x-text="lib.name" :selected="lib.id === library"></option>
+      </template>
+    
+        <option :value="lib.id" x-text="lib.name" :selected="lib.id === library" value="vue">Vue</option>
+      
+        <option :value="lib.id" x-text="lib.name" :selected="lib.id === library" value="react" selected="selected">React</option>
+      
+        <option :value="lib.id" x-text="lib.name" :selected="lib.id === library" value="alpine">Alpine.js</option>
+      </select>
+  </div>
+  <template x-if="library">
+    <ul>
+      Library information:
+      <li>
+        <strong>Name</strong>:
+        <span x-text="libraries.find(l => l.id === library).name"></span>
+      </li>
+      <li>
+        <strong>Description</strong>:
+        <span x-text="libraries.find(l => l.id === library).description"></span>
+      </li>
+      <li>
+        <strong>Stars</strong>:
+        <span x-text="libraries.find(l => l.id === library).stars"></span>
+      </li>
+    </ul>
+  </template>
+
+    <ul>
+      Library information:
+      <li>
+        <strong>Name</strong>:
+        <span x-text="libraries.find(l => l.id === library).name">React</span>
+      </li>
+      <li>
+        <strong>Description</strong>:
+        <span x-text="libraries.find(l => l.id === library).description">A declarative, efficient, and flexible JavaScript library for building user interfaces.</span>
+      </li>
+      <li>
+        <strong>Stars</strong>:
+        <span x-text="libraries.find(l => l.id === library).stars">147k</span>
+      </li>
+    </ul>
+  </div>
+
+        </div>
+        <script>
+let loaded={
+    library: new URLSearchParams(location.search).get('lib') || 'alpine',
+    libraries: [
+      {
+        id: 'vue',
+        name: 'Vue',
+        stars: '162k',
+        description: 'Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.',
+        url: 'https://vuejs.org/'
+      },
+      {
+        id: 'react',
+        name: 'React',
+        stars: '147k',
+        description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces.',
+        url: 'https://reactjs.org/'
+      },
+      {
+        id: 'alpine',
+        name: 'Alpine.js',
+        stars: '6.2k',
+        description: 'A rugged, minimal framework for composing JavaScript behavior in your markup.',
+        url: 'https://github.com/alpinejs/alpine'
+      }
+    ]
+  }
+</script>
+        </body>
+        </html>
+       
