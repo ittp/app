@@ -1,26 +1,16 @@
 <html>
   <head>
     <title>netboot</title>
-  </head>
-<body>
-  <h1>Netboot screen</h1>
-  S. Setup
-  L. Live
-  W. WebApps
-  C. Config
-</body>
-<script>
-  let links = {
-    setup: {
-      key: "S",
-      title: "Setup",
-      action: ""
-    }
-    fetch("https://boot.alpinelinux.org")
-    document.addEventListener('keydown', k => { 
-      
-      console.log(k)
-      
     
-  })
- </scirpt>
+ 
+</head>
+ 
+<body>
+    <script type="prefetch">
+    let location = "desktop.app"
+    document.body.write(location)
+    </scirpt>
+  
+</body>
+
+</html>
